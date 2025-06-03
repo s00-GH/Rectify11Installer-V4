@@ -140,8 +140,14 @@ void HandleAsdfChk(Element* elem, Event* iev) {
 void HandleShellChk(Element* elem, Event* iev) {
     TouchCheckBox* tch = (TouchCheckBox*)elem;
     if (iev->type == TouchButton::Click) {
-        if (tch->GetCheckedState() == CheckedStateFlags_CHECKED) tch->SetCheckedState(CheckedStateFlags_NONE);
-        else tch->SetCheckedState(CheckedStateFlags_CHECKED);
+        if (tch->GetCheckedState() == CheckedStateFlags_CHECKED) {
+            tch->SetCheckedState(CheckedStateFlags_NONE); 
+            InstallFlags[L"INSTALLWINVERSHUTDOWN"] = false;
+        }
+        else { 
+            tch->SetCheckedState(CheckedStateFlags_CHECKED);
+            InstallFlags[L"INSTALLWINVERSHUTDOWN"] = true;
+        }
     }
 }
 
@@ -247,6 +253,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
     InstallFlags[L"INSTALLASDF"] = true;
     InstallFlags[L"AMD64"] = true;
     InstallFlags[L"ARM64"] = false;
+    InstallFlags[L"INSTALLWINVERSHUTDOWN"] = true;
 
     USHORT processMachine = 0;
     USHORT nativeMachine = 0;
