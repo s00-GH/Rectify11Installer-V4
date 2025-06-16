@@ -37,6 +37,14 @@ void RemoveWHMods() {
 		wchar_t args[] = L"/c reg delete HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run /f /v ASDF";
 		RunEXE(exepath, args);
 	}
+	if (InstallFlags[L"INSTALLWINVERSHUTDOWN"] == true) {
+
+		InstallationLogger.WriteLine(L"Uninstalling winver and shutdown...");
+
+		StringCchPrintf(exepath, MAX_PATH, L"%s\\System32\\cmd.exe", windir);
+		wchar_t args[] = L"/c reg delete HKLM\\SOFTWARE\\Windhawk\\Engine\\Mods\\winvershutdown /f";
+		RunEXE(exepath, args);
+	}
 }
 
 void RemoveSecureUX() {
