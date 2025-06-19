@@ -21,7 +21,7 @@ void HandleThemesChk(Element* elem, Event* iev);
 
 void HandleAsdfChk(Element* elem, Event* iev);
 
-void HandleShellChk(Element* elem, Event* iev);
+void HandleWinverChk(Element* elem, Event* iev);
 
 void HandleExplorerChk(Element* elem, Event* iev);
 

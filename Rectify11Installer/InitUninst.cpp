@@ -78,11 +78,11 @@ void InitUninstControls() {
     progressmeter = (RichText*)pMain->FindDescendent(StrToID((UCString)L"R11Progress"));
     Countdown = (RichText*)pMain->FindDescendent(StrToID((UCString)L"RestartCountdown"));
 
-    void (*fArr[])(Element*, Event*) = { HandleThemesChk, HandleAsdfChk, HandleShellChk, HandleExplorerChk, HandleIconChk };
+    void (*fArr[])(Element*, Event*) = { HandleThemesChk, HandleAsdfChk, HandleWinverChk, HandleExplorerChk, HandleIconChk };
     TouchCheckBox* tch;
     std::wstring ws;
     for (int i = 0; i < 5; i++) {
-        ws = L"chk" + std::to_wstring(i + 1);
+        ws = L"chk1" + std::to_wstring(i + 1);
         tch = (TouchCheckBox*)pMain->FindDescendent(StrToID((UCString)ws.c_str()));
         tch->AddListener(new EventListener(fArr[i]));
     }

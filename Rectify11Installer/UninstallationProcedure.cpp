@@ -20,6 +20,13 @@ void RemoveWHMods() {
 		StringCchPrintf(exepath, MAX_PATH, L"%s\\System32\\cmd.exe", windir);
 		wchar_t args2[] = L"/c reg delete HKLM\\SOFTWARE\\Windhawk\\Engine\\Mods\\uxtheme-hook /f";
 		RunEXE(exepath, args2);
+
+		InstallationLogger.WriteLine(L"Uninstalling titlebar fix...");
+
+		StringCchPrintf(exepath, MAX_PATH, L"%s\\System32\\cmd.exe", windir);
+		wchar_t args3[] = L"/c reg delete HKLM\\SOFTWARE\\Windhawk\\Engine\\Mods\\local@new-mod-2 /f";
+		RunEXE(exepath, args3);
+
 	}
 	if (InstallFlags[L"INSTALLICONS"] == true) {
 
@@ -43,6 +50,14 @@ void RemoveWHMods() {
 
 		StringCchPrintf(exepath, MAX_PATH, L"%s\\System32\\cmd.exe", windir);
 		wchar_t args[] = L"/c reg delete HKLM\\SOFTWARE\\Windhawk\\Engine\\Mods\\winvershutdown /f";
+		RunEXE(exepath, args);
+	}
+	if (InstallFlags[L"INSTALLEXP"] == true) {
+
+		InstallationLogger.WriteLine(L"Uninstalling explorer tweaks...");
+
+		StringCchPrintf(exepath, MAX_PATH, L"%s\\System32\\cmd.exe", windir);
+		wchar_t args[] = L"/c reg delete HKLM\\SOFTWARE\\Windhawk\\Engine\\Mods\\windows-11-file-explorer-styler /f";
 		RunEXE(exepath, args);
 	}
 }

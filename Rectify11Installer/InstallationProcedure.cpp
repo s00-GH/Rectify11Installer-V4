@@ -26,16 +26,20 @@ L"%r11files%\\SymChk\\symchk.exe \"%systemroot%\\system32\\Shlwapi.dll\" /s SRV*
 std::wstring mod_list[] = {
 L"%r11files%\\Regs\\resourcepatch.reg|INSTALLICONS|AMD64",
 L"%r11files%\\Regs\\resourcepatchARM.reg|INSTALLICONS|ARM64",
-L"%r11files%\\Regs\\sound.reg|INSTALLTHEMES",
 L"%r11files%\\Regs\\soundWH.reg|INSTALLTHEMES|AMD64",
 L"%r11files%\\Regs\\soundWHARM.reg|INSTALLTHEMES|ARM64",
 L"%r11files%\\Regs\\uxthemehook.reg|INSTALLTHEMES|AMD64",
 L"%r11files%\\Regs\\uxthemehookARM.reg|INSTALLTHEMES|ARM64",
-L"%r11files%\\Regs\\winvershutdownARM.reg|INSTALLWINVERSHUTDOWN|AMD64",
-L"%r11files%\\Regs\\winvershutdown.reg|INSTALLWINVERSHUTDOWN",
+L"%r11files%\\Regs\\winvershutdown.reg|INSTALLWINVERSHUTDOWN|AMD64",
+L"%r11files%\\Regs\\winvershutdownARM.reg|INSTALLWINVERSHUTDOWN|ARM64",
+L"%r11files%\\Regs\\titlebarfix.reg|INSTALLTHEMES|AMD64",
+L"%r11files%\\Regs\\titlebarfixARM.reg|INSTALLTHEMES|ARM64",
+L"%r11files%\\Regs\\topbar.reg|INSTALLEXP|AMD64",
+L"%r11files%\\Regs\\topbarARM.reg|INSTALLEXP|ARM64",
 L"%r11files%\\Regs\\SecureUX.reg|INSTALLTHEMES",
 L"%r11files%\\Regs\\Light.reg|LIGHTTHEME",
 L"%r11files%\\Regs\\Dark.reg|DARKTHEME",
+L"%r11files%\\Regs\\sound.reg|INSTALLTHEMES",
 L"%r11files%\\Regs\\fonts.reg|NONE",
 L"%r11files%\\Regs\\ASDF.reg|INSTALLASDF"
 };
