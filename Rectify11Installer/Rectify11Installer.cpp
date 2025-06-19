@@ -210,7 +210,17 @@ bool DetectUninstall() {
 
 LRESULT CALLBACK SubclassWindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
     switch (uMsg) {
-        case WM_UPDATEANIMATIONFRAME: {
+        case WM_SETTINGCHANGE: {
+            if (lParam && wcscmp((LPCWSTR)lParam, L"ImmersiveColorSet") == 0) {
+                HRESULT err = ChangeSheet();
+                if (FAILED(err)) {
+                    MainLogger.WriteLine(L"Failed to change stylesheet.", err);
+                    return err;
+                }
+            }
+            break;
+        }
+        case WM_UPDATEANIMATIONFRAME: {  
             V = Value::CreateString((UCString)MAKEINTRESOURCE(currframe), hinst);
             waitAnimation->SetValue(RichText::ContentProp, 2, V);
             currframe++;
