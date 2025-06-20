@@ -7,6 +7,10 @@
 wchar_t exepath[MAX_PATH];
 
 void RemoveWHMods() {
+	StringCchPrintf(exepath, MAX_PATH, L"%s\\System32\\cmd.exe", windir);
+	wchar_t args4[] = L"/c reg delete HKLM\\SOFTWARE\\Windhawk\\Engine\\Mods\\local@new-mod-3 /f";
+	RunEXE(exepath, args4);
+
 	if (InstallFlags[L"INSTALLTHEMES"] == true) {
 
 		InstallationLogger.WriteLine(L"Uninstalling sound hook...");
