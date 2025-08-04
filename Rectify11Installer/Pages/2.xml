@@ -15,7 +15,7 @@
 						<RichText class="CommandLinkHeader" layoutpos="top" content="Patch your system"/>
 						<RichText class="CommandLinkInstruction" layoutpos="top" content="Proceed to install Rectify11 on your PC"/>
 					</TouchButton>
-					<TouchButton id="atom(PatchISO)" class="CommandLink" layout="borderlayout()" margin="rect(0,0,0,5rp)">
+					<TouchButton id="atom(PatchISO)" class="CommandLink" visible="false" layout="borderlayout()" margin="rect(0,0,0,5rp)">
 						<Richtext class="CommandLinkIcon" layoutpos="left" content="resstr(106)"/>
 						<Richtext class="CommandLinkArrow" layoutpos="right"/>
 						<RichText class="CommandLinkHeader" layoutpos="top" content="Patch an ISO file"/>
