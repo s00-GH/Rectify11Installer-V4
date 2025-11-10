@@ -5,40 +5,39 @@ wchar_t path[MAX_PATH];
 wchar_t cmd[1024];
 
 std::wstring copy_list[] = {
-L"%r11files%\\Mods|%ProgramData%\\Windhawk\\Engine\\Mods|NONE",
-L"%r11files%\\Rectify11|%systemroot%\\Rectify11|INSTALLICONS",
-L"%r11files%\\System32|%systemroot%\\System32|NONE",
-L"%r11files%\\themes|%systemroot%\\resources\\themes|INSTALLTHEMES",
-L"%r11files%\\wallpapers|%systemroot%\\web\\wallpaper\\rectified|INSTALLTHEMES",
-L"%r11files%\\cursors|%systemroot%\\cursors|INSTALLTHEMES",
-L"%r11files%\\media|%systemroot%\\media\\rectified|INSTALLTHEMES",
+L"%r11files%\Mods|%ProgramData%\Windhawk\Engine\Mods|NONE",
+L"%r11files%\Rectify11|%systemroot%\Rectify11|INSTALLICONS",
+L"%r11files%\System32|%systemroot%\System32|NONE",
+L"%r11files%\themes|%systemroot%\resources\themes|INSTALLTHEMES",
+L"%r11files%\wallpapers|%systemroot%\web\wallpaper\rectified|INSTALLTHEMES",
+L"%r11files%\cursors|%systemroot%\cursors|INSTALLTHEMES",
+L"%r11files%\media|%systemroot%\media\rectified|INSTALLTHEMES",
 };
 
 
 std::wstring install_list[] = {
-L"msiexec.exe /i \"%r11files%\\SecureUxTheme_x64.msi\" /quiet /norestart|INSTALLTHEMES|AMD64",
-L"msiexec.exe /i \"%r11files%\\SecureUxTheme_ARM64.msi\" /quiet /norestart|INSTALLTHEMES|ARM64",
-L"%r11files%\\windhawk_setup_offline.exe /S|NONE",
-L"%r11files%\\SymChk\\symchk.exe \"%systemroot%\\Explorer.exe\" /s SRV*%programdata%\\Windhawk\\Engine\\symbols\\*http://msdl.microsoft.com/download/symbols|NONE",
-L"%r11files%\\SymChk\\symchk.exe \"%systemroot%\\system32\\Shlwapi.dll\" /s SRV*%programdata%\\Windhawk\\Engine\\symbols\\*http://msdl.microsoft.com/download/symbols|NONE"
+L"msiexec.exe /i "%r11files%\SecureUxTheme_x64.msi" /quiet /norestart|INSTALLTHEMES|AMD64",
+L"%r11files%\windhawk_setup_offline.exe /S|NONE",
+L"%r11files%\SymChk\symchk.exe "%systemroot%\Explorer.exe" /s SRV*%programdata%\Windhawk\Engine\symbols\*http://msdl.microsoft.com/download/symbols|NONE",
+L"%r11files%\SymChk\symchk.exe "%systemroot%\system32\Shlwapi.dll" /s SRV*%programdata%\Windhawk\Engine\symbols\*http://msdl.microsoft.com/download/symbols|NONE"
 };
 
 std::wstring mod_list[] = {
-L"%r11files%\\Regs\\resourcepatch.reg|INSTALLICONS|AMD64",
-L"%r11files%\\Regs\\resourcepatchARM.reg|INSTALLICONS|ARM64",
-L"%r11files%\\Regs\\soundWH.reg|INSTALLTHEMES|AMD64",
-L"%r11files%\\Regs\\soundWHARM.reg|INSTALLTHEMES|ARM64",
-L"%r11files%\\Regs\\winvershutdown.reg|INSTALLWINVERSHUTDOWN|AMD64",
-L"%r11files%\\Regs\\winvershutdownARM.reg|INSTALLWINVERSHUTDOWN|ARM64",
-L"%r11files%\\Regs\\titlebarfix.reg|INSTALLTHEMES|AMD64",
-L"%r11files%\\Regs\\titlebarfixARM.reg|INSTALLTHEMES|ARM64",
-L"%r11files%\\Regs\\topbar.reg|INSTALLEXP|AMD64",
-L"%r11files%\\Regs\\topbarARM.reg|INSTALLEXP|ARM64",
-L"%r11files%\\Regs\\Light.reg|LIGHTTHEME",
-L"%r11files%\\Regs\\Dark.reg|DARKTHEME",
-L"%r11files%\\Regs\\sound.reg|INSTALLTHEMES",
-L"%r11files%\\Regs\\fonts.reg|NONE",
-L"%r11files%\\Regs\\ASDF.reg|INSTALLASDF"
+L"%r11files%\Regs\resourcepatch.reg|INSTALLICONS|AMD64",
+L"%r11files%\Regs\resourcepatchARM.reg|INSTALLICONS|ARM64",
+L"%r11files%\Regs\soundWH.reg|INSTALLTHEMES|AMD64",
+L"%r11files%\Regs\soundWHARM.reg|INSTALLTHEMES|ARM64",
+L"%r11files%\Regs\winvershutdown.reg|INSTALLWINVERSHUTDOWN|AMD64",
+L"%r11files%\Regs\winvershutdownARM.reg|INSTALLWINVERSHUTDOWN|ARM64",
+L"%r11files%\Regs\titlebarfix.reg|INSTALLTHEMES|AMD64",
+L"%r11files%\Regs\titlebarfixARM.reg|INSTALLTHEMES|ARM64",
+L"%r11files%\Regs\topbar.reg|INSTALLEXP|AMD64",
+L"%r11files%\Regs\topbarARM.reg|INSTALLEXP|ARM64",
+L"%r11files%\Regs\Light.reg|LIGHTTHEME",
+L"%r11files%\Regs\Dark.reg|DARKTHEME",
+L"%r11files%\Regs\sound.reg|INSTALLTHEMES",
+L"%r11files%\Regs\fonts.reg|NONE",
+L"%r11files%\Regs\ASDF.reg|INSTALLASDF"
 };
 
 
@@ -69,7 +68,7 @@ void RunEXE(wchar_t exe[], wchar_t args[]) {
 
 void extractFiles() {
 
-	StringCchPrintf(cmd, 1024, L"\"%s\\7z.exe\" x -aoa -o\"%s\" \"%s\\Files.7z\" -y", r11dir, r11dir, r11dir);
+	StringCchPrintf(cmd, 1024, L""%s\7z.exe" x -aoa -o"%s" "%s\Files.7z" -y", r11dir, r11dir, r11dir);
 	InstallationLogger.WriteLine(L"Extracting files...");
 	RunEXE(NULL, cmd);
 }
@@ -95,15 +94,15 @@ void parseEnvironmentVariablePath(std::wstring& path) {
 
 void MoveFileCmd(const wchar_t* src, const wchar_t* dest) {
 
-	StringCchPrintf(cmd, 1024, L"/c echo d | xcopy \"%s\" \"%s\" /e /y", src, dest);
-	StringCchPrintf(path, MAX_PATH, L"%s\\System32\\cmd.exe", windir);
+	StringCchPrintf(cmd, 1024, L"/c echo d | xcopy "%s" "%s" /e /y", src, dest);
+	StringCchPrintf(path, MAX_PATH, L"%s\System32\cmd.exe", windir);
 	RunEXE(path, cmd);
 }
 
 void RegisterRegFile(const wchar_t* regpath) {
 
-	StringCchPrintf(cmd, 1024, L"/c reg import \"%s\"", regpath);
-	StringCchPrintf(path, MAX_PATH, L"%s\\System32\\cmd.exe", windir);
+	StringCchPrintf(cmd, 1024, L"/c reg import "%s"", regpath);
+	StringCchPrintf(path, MAX_PATH, L"%s\System32\cmd.exe", windir);
 
 	RunEXE(path, cmd);
 }
@@ -134,9 +133,9 @@ void MoveFilesToTarget() {
 			for (int j = 0; j < pathlist.size(); j++) {
 				parseEnvironmentVariablePath(pathlist[j]);
 			}
-			InstallationLogger.WriteLine(L"Copying files \"" + pathlist[0] + L"\" to \"" + pathlist[1] + L"\" based on condition \"" + pathlist[2] + L"\"");
+			InstallationLogger.WriteLine(L"Copying files "" + pathlist[0] + L"" to "" + pathlist[1] + L"" based on condition "" + pathlist[2] + L""");
 			MoveFileCmd(pathlist[0].c_str(), pathlist[1].c_str());
-			
+
 		}
 	}
 }
@@ -155,15 +154,22 @@ void InstallPrograms() {
 		if (alltrue) {
 			parseEnvironmentVariablePath(progpath[0]);
 
-			StringCchPrintf(cmd, 1024, L"/c \"%s\"", progpath[0].c_str());
-			StringCchPrintf(path, MAX_PATH, L"%s\\System32\\cmd.exe", windir);
-			RunEXE(path, cmd);
+			// Check if this is an MSI installation
+			if (progpath[0].find(L"msiexec.exe") == 0) {
+				// For MSI files, execute directly without cmd wrapper
+				RunEXE(NULL, &progpath[0][0]);
+			} else {
+				// For other programs, use cmd wrapper
+				StringCchPrintf(cmd, 1024, L"/c "%s"", progpath[0].c_str());
+				StringCchPrintf(path, MAX_PATH, L"%s\System32\cmd.exe", windir);
+				RunEXE(path, cmd);
+			}
 		}
 	}
 }
 
 void InstallFonts() {
-	StringCchPrintf(path, MAX_PATH, L"%s\\Fonts\\*", r11dir);
+	StringCchPrintf(path, MAX_PATH, L"%s\Fonts\*", r11dir);
 
 	HANDLE hFind;
 	WIN32_FIND_DATA FindFileData;
@@ -171,8 +177,8 @@ void InstallFonts() {
 	hFind = FindFirstFile(path, &FindFileData);
 	do {
 		if ((FindFileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) == 0) {
-			StringCchPrintf(path, MAX_PATH, L"%s\\Fonts\\%s", r11dir, FindFileData.cFileName);
-			StringCchPrintf(cmd, MAX_PATH, L"%s\\Fonts\\%s", windir, FindFileData.cFileName);
+			StringCchPrintf(path, MAX_PATH, L"%s\Fonts\%s", r11dir, FindFileData.cFileName);
+			StringCchPrintf(cmd, MAX_PATH, L"%s\Fonts\%s", windir, FindFileData.cFileName);
 
 			CopyFile(path, cmd, false);
 			AddFontResource(cmd);
@@ -200,52 +206,52 @@ void RegisterWHMods() {
 
 void FinaliseInstall() {
 	InstallationLogger.WriteLine(L"Finalising installation...");
-	StringCchPrintf(path, MAX_PATH, L"%s\\System32\\cmd.exe", windir);
-	wchar_t reg[] = L"/c reg add HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Rectify";
+	StringCchPrintf(path, MAX_PATH, L"%s\System32\cmd.exe", windir);
+	wchar_t reg[] = L"/c reg add HKLM\Software\Microsoft\Windows\CurrentVersion\Uninstall\Rectify";
 	RunEXE(path, reg);
 
-	wchar_t icon[] = L"/c reg add HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Rectify /v DisplayIcon /t REG_SZ /d %systemroot%\\Rectify11\\Rectify11Installer.exe";
+	wchar_t icon[] = L"/c reg add HKLM\Software\Microsoft\Windows\CurrentVersion\Uninstall\Rectify /v DisplayIcon /t REG_SZ /d %systemroot%\Rectify11\Rectify11Installer.exe";
 	RunEXE(path, icon);
 
-	wchar_t name[] = L"/c reg add HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Rectify /v DisplayName /t REG_SZ /d Rectify11";
+	wchar_t name[] = L"/c reg add HKLM\Software\Microsoft\Windows\CurrentVersion\Uninstall\Rectify /v DisplayName /t REG_SZ /d Rectify11";
 	RunEXE(path, name);
 
-	wchar_t version[] = L"/c reg add HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Rectify /v DisplayVersion /t REG_SZ /d 3.9.7";
+	wchar_t version[] = L"/c reg add HKLM\Software\Microsoft\Windows\CurrentVersion\Uninstall\Rectify /v DisplayVersion /t REG_SZ /d 3.9.7";
 	RunEXE(path, version);
 
-	wchar_t location[] = L"/c reg add HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Rectify /v InstallLocation /t REG_SZ /d %systemroot%\\Rectify11";
+	wchar_t location[] = L"/c reg add HKLM\Software\Microsoft\Windows\CurrentVersion\Uninstall\Rectify /v InstallLocation /t REG_SZ /d %systemroot%\Rectify11";
 	RunEXE(path, location);
 
-	wchar_t modify[] = L"/c reg add HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Rectify /v NoModify /t REG_DWORD /d 1";
+	wchar_t modify[] = L"/c reg add HKLM\Software\Microsoft\Windows\CurrentVersion\Uninstall\Rectify /v NoModify /t REG_DWORD /d 1";
 	RunEXE(path, modify);
 
-	wchar_t repair[] = L"/c reg add HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Rectify /v NoRepair /t REG_DWORD /d 1";
+	wchar_t repair[] = L"/c reg add HKLM\Software\Microsoft\Windows\CurrentVersion\Uninstall\Rectify /v NoRepair /t REG_DWORD /d 1";
 	RunEXE(path, repair);
 
-	wchar_t publisher[] = L"/c reg add HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Rectify /v Publisher /t REG_SZ /d \"The Rectify11 Team\"";
+	wchar_t publisher[] = L"/c reg add HKLM\Software\Microsoft\Windows\CurrentVersion\Uninstall\Rectify /v Publisher /t REG_SZ /d "The Rectify11 Team"";
 	RunEXE(path, publisher);
 
-	wchar_t uninstallstr[] = L"/c reg add HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Rectify /v UninstallString /t REG_SZ /d \"%systemroot%\\Rectify11\\Rectify11Installer.exe\"";
+	wchar_t uninstallstr[] = L"/c reg add HKLM\Software\Microsoft\Windows\CurrentVersion\Uninstall\Rectify /v UninstallString /t REG_SZ /d "%systemroot%\Rectify11\Rectify11Installer.exe"";
 	RunEXE(path, uninstallstr);
 
-	StringCchPrintf(path, MAX_PATH, L"%s\\Base.dll", currdir);
-	StringCchPrintf(cmd, MAX_PATH, L"%s\\Base.dll", r11targetdir);
+	StringCchPrintf(path, MAX_PATH, L"%s\Base.dll", currdir);
+	StringCchPrintf(cmd, MAX_PATH, L"%s\Base.dll", r11targetdir);
 	CopyFile(path, cmd, false);
 
-	StringCchPrintf(path, MAX_PATH, L"%s\\Controls.dll", currdir);
-	StringCchPrintf(cmd, MAX_PATH, L"%s\\Controls.dll", r11targetdir);
+	StringCchPrintf(path, MAX_PATH, L"%s\Controls.dll", currdir);
+	StringCchPrintf(cmd, MAX_PATH, L"%s\Controls.dll", r11targetdir);
 	CopyFile(path, cmd, false);
 
-	StringCchPrintf(path, MAX_PATH, L"%s\\PageRes.dll", currdir);
-	StringCchPrintf(cmd, MAX_PATH, L"%s\\PageRes.dll", r11targetdir);
+	StringCchPrintf(path, MAX_PATH, L"%s\PageRes.dll", currdir);
+	StringCchPrintf(cmd, MAX_PATH, L"%s\PageRes.dll", r11targetdir);
 	CopyFile(path, cmd, false);
 
-	StringCchPrintf(path, MAX_PATH, L"%s\\Rectify11Installer.exe", currdir);
-	StringCchPrintf(cmd, MAX_PATH, L"%s\\Rectify11Installer.exe", r11targetdir);
+	StringCchPrintf(path, MAX_PATH, L"%s\Rectify11Installer.exe", currdir);
+	StringCchPrintf(cmd, MAX_PATH, L"%s\Rectify11Installer.exe", r11targetdir);
 	CopyFile(path, cmd, false);
 
-	StringCchPrintf(path, MAX_PATH, L"%s\\Segoe_r11.ttf", currdir);
-	StringCchPrintf(cmd, MAX_PATH, L"%s\\Segoe_r11.ttf", r11targetdir);
+	StringCchPrintf(path, MAX_PATH, L"%s\Segoe_r11.ttf", currdir);
+	StringCchPrintf(cmd, MAX_PATH, L"%s\Segoe_r11.ttf", r11targetdir);
 	CopyFile(path, cmd, false);
 }
 
@@ -266,8 +272,8 @@ void SetupComplete() {
 		CloseHandle(hExplorer);
 	}
 
-	wchar_t cmd2[] = L"/c del %localappdata%\\microsoft\\windows\\explorer\\*.db";
-	StringCchPrintf(path, MAX_PATH, L"%s\\System32\\cmd.exe", windir);
+	wchar_t cmd2[] = L"/c del %localappdata%\microsoft\windows\explorer\*.db";
+	StringCchPrintf(path, MAX_PATH, L"%s\System32\cmd.exe", windir);
 
 	RunEXE(path, cmd2);
 
